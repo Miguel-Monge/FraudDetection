@@ -6,11 +6,15 @@ public static class OrderParser
 {
     public static List<Order> Parse(TextReader reader)
     {
+        ArgumentNullException.ThrowIfNull(reader);
+
         var firstLine = reader.ReadLine();
         if (string.IsNullOrWhiteSpace(firstLine))
             return [];
 
-        var n = int.Parse(firstLine.Trim());
+        if (!int.TryParse(firstLine.Trim(), out var n) || n < 0)
+            return [];
+
         var orders = new List<Order>(n);
 
         for (var i = 0; i < n; i++)
@@ -21,9 +25,12 @@ public static class OrderParser
             var parts = line.Split(',');
             if (parts.Length < 8) continue;
 
+            if (!int.TryParse(parts[0].Trim(), out var orderId) || !int.TryParse(parts[1].Trim(), out var dealId))
+                continue;
+
             orders.Add(new Order(
-                int.Parse(parts[0].Trim()),
-                int.Parse(parts[1].Trim()),
+                orderId,
+                dealId,
                 parts[2].Trim(),
                 parts[3].Trim(),
                 parts[4].Trim(),

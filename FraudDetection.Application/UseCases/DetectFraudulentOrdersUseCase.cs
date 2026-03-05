@@ -9,7 +9,8 @@ public sealed class DetectFraudulentOrdersUseCase
 
     public DetectFraudulentOrdersUseCase(IFraudDetector fraudDetector)
     {
-        _fraudDetector = fraudDetector ?? throw new ArgumentNullException(nameof(fraudDetector));
+        ArgumentNullException.ThrowIfNull(fraudDetector);
+        _fraudDetector = fraudDetector;
     }
 
     public IReadOnlySet<int> Execute(IEnumerable<Order> orders)

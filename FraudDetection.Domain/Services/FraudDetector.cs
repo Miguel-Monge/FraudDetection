@@ -8,11 +8,13 @@ public sealed class FraudDetector : IFraudDetector
 
     public FraudDetector(IDataNormalizer normalizer)
     {
-        _normalizer = normalizer ?? throw new ArgumentNullException(nameof(normalizer));
+        ArgumentNullException.ThrowIfNull(normalizer);
+        _normalizer = normalizer;
     }
 
     public IReadOnlySet<int> DetectFraudulentOrders(IEnumerable<Order> orders)
     {
+        ArgumentNullException.ThrowIfNull(orders);
         var orderList = orders as IReadOnlyList<Order> ?? orders.ToArray();
         var fraudulentIds = new HashSet<int>();
 
