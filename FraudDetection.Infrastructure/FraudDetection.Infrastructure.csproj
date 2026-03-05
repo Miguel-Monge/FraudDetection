@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FraudDetection.Application\FraudDetection.Application.csproj" />
     <ProjectReference Include="..\FraudDetection.Domain\FraudDetection.Domain.csproj" />
   </ItemGroup>
 

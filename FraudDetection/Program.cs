@@ -1,15 +1,17 @@
+using FraudDetection.Application.Ports;
 using FraudDetection.Application.UseCases;
 using FraudDetection.Domain.Services;
+using FraudDetection.Infrastructure.Adapters;
 using FraudDetection.Infrastructure.Parsing;
 
 IDataNormalizer normalizer = new DataNormalizer();
 IFraudDetector fraudDetector = new FraudDetector(normalizer);
-var useCase = new DetectFraudulentOrdersUseCase(fraudDetector);
+IOrderReader orderReader = new OrderReader();
+var useCase = new DetectFraudulentOrdersUseCase(fraudDetector, orderReader);
 
 try
 {
-    var orders = OrderParser.Parse(Console.In);
-    var fraudulentIds = useCase.Execute(orders);
+    var fraudulentIds = useCase.Execute(Console.In);
     var output = string.Join(",", fraudulentIds.Order());
     Console.WriteLine(output);
 }
