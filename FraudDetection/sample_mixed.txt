@@ -1,0 +1,7 @@
+6
+1,1,bugs@bunny.com,100 Main St.,Chicago,IL,60601,11111111111
+2,1,bugs@bunny.com,200 Oak Rd.,Chicago,IL,60602,22222222222
+3,2,alice@mail.com,300 Pine St.,New York,NY,10001,33333333333
+4,2,bob@mail.com,300 Pine St.,New York,NY,10001,44444444444
+5,3,charlie@mail.com,400 Elm St.,Los Angeles,CA,90001,55555555555
+6,1,bugs@bunny.com,100 Main St.,Chicago,IL,60601,11111111111
